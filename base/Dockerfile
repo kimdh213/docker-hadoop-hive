@@ -1,4 +1,4 @@
-FROM debian:9
+FROM centos:7
 
 MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
 MAINTAINER Giannis Mouchakis <gmouchakis@iit.demokritos.gr>
