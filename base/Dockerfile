@@ -34,7 +34,7 @@ RUN yum install -y \
 
 # RUN gpg --import KEYS
 ### 
-ENV HADOOP_VERSION 3.2.1
+ENV HADOOP_VERSION 3.2.4
 ENV HADOOP_URL https://www.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 
 RUN set -x \
