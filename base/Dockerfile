@@ -1,23 +1,39 @@
+#
+# Base Image
+# Data: 2022.08.04
+# Auth: Dohyoung Kim
+#
+
 FROM centos:7
 
-MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
-MAINTAINER Giannis Mouchakis <gmouchakis@iit.demokritos.gr>
-
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      openjdk-8-jdk \
-      net-tools \
-      curl \
-      netcat \
-      gnupg \
-      libsnappy-dev \
-    && rm -rf /var/lib/apt/lists/*
+#
+# CentOS Default Install
+#
+RUN yum updatae -y
+RUN yum install -y \
+    initscripts \
+    vim \
+    openssh-server \
+    openssh-clients \
+    openssh-askpass \
+    java-1.8.0-openjdk \
+    java-1.8.0-openjdk-devel.x86_64
+### 구버전
+# RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+#       openjdk-8-jdk \
+#       net-tools \
+#       curl \
+#       netcat \
+#       gnupg \
+#       libsnappy-dev \
+#     && rm -rf /var/lib/apt/lists/*
       
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+# ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
-RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
+# RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
-RUN gpg --import KEYS
-
+# RUN gpg --import KEYS
+### 
 ENV HADOOP_VERSION 3.2.1
 ENV HADOOP_URL https://www.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 
@@ -39,6 +55,7 @@ ENV HADOOP_CONF_DIR=/etc/hadoop
 ENV MULTIHOMED_NETWORK=1
 ENV USER=root
 ENV PATH $HADOOP_HOME/bin/:$PATH
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk/
 
 ADD entrypoint.sh /entrypoint.sh
 
