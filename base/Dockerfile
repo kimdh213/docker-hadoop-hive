@@ -9,7 +9,7 @@ FROM centos:7
 #
 # CentOS Default Install
 #
-RUN yum updatae -y
+RUN yum update -y
 RUN yum install -y \
     initscripts \
     vim \
